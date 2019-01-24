@@ -178,7 +178,7 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click.native="editFormVisible = false">取消</el-button>
+        <el-button @click.native="closeEditForm">取消</el-button>
         <el-button type="primary" @click.native="editSubmit" :loading="editLoading">提交</el-button>
       </div>
     </el-dialog>
@@ -306,7 +306,6 @@
 
 <script>
 import util from "../../common/js/util"
-//import NProgress from 'nprogress'
 import {
   getCityList,
   removeCity,
@@ -397,6 +396,9 @@ export default {
     }
   },
   methods: {
+    closeEditForm() {
+      this.editFormVisible = false
+    },
     handleCurrentChange(val) {
       this.page = val
       this.getCityList()
@@ -511,6 +513,7 @@ export default {
                   type: "error"
                 })
               })
+            this.$refs.editForm.resetFields()
           })
         }
       })
@@ -665,6 +668,6 @@ export default {
 }
 .hotTitleGroup .el-form-item__label {
   position: absolute;
-  margin: -30px 0 0 65px;
+  margin: -30px 0 0 50px;
 }
 </style>
